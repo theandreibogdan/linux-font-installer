@@ -2,7 +2,7 @@
 This is a quick script that allows you to install fonts properly on Linux from URLs
 Author of the script: https://dev.to/pulkitsingh
 
-# how to use it
+# How to use it
 Create a new file: `font_installer.sh` with the code from the file above
 
 Make sure you run `sudo chmod 777 font_installer.sh` so it is executable
