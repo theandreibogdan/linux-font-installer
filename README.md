@@ -1,5 +1,6 @@
 # linux-font-installer
 This is a quick script that allows you to install fonts properly on Linux from URLs
+
 Author of the script: https://dev.to/pulkitsingh
 
 # How to use it
