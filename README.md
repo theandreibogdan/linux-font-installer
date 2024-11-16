@@ -10,7 +10,7 @@ Author of the script: https://dev.to/pulkitsingh
 
 3. Now you can run it using `./font_installer.sh https://your.url.com`
 
-* You can try it with this command: `./install-font.sh https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1`
+You can try it with this command: `./install-font.sh https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1`
 
 I saved this script here because I've had problems with installing fonts, and Hack seems like the best one that also has icon in NVIM
 
