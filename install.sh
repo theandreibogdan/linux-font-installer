@@ -34,11 +34,17 @@ fi
 
 # Download the font installer script
 echo "📥 Downloading font installer..."
-sudo curl -o /usr/local/bin/font-install https://raw.githubusercontent.com/theandreibogdan/linux-font-installer/main/font_installer.sh
+if ! sudo curl -fsSL -o /usr/local/bin/font-install https://raw.githubusercontent.com/theandreibogdan/linux-font-installer/main/font_installer.sh; then
+    echo "❌ Error: Failed to download the font installer script. Please check your internet connection and try again."
+    exit 1
+fi
 
 # Make it executable
 echo "🔧 Setting up permissions..."
-sudo chmod +x /usr/local/bin/font-install
+if ! sudo chmod +x /usr/local/bin/font-install; then
+    echo "❌ Error: Failed to set execute permissions on the font installer script."
+    exit 1
+fi
 
 echo "✨ Installation completed! You can now use the 'font-install' command."
 echo "📚 Usage example: font-install https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip" 
