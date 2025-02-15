@@ -20,6 +20,18 @@ if ! command -v unzip &> /dev/null; then
     exit 1
 fi
 
+# Check if tar is installed
+if ! command -v tar &> /dev/null; then
+    echo "❌ Error: tar is not installed. Please install tar first."
+    exit 1
+fi
+
+# Check if file is installed
+if ! command -v file &> /dev/null; then
+    echo "❌ Error: file is not installed. Please install file first."
+    exit 1
+fi
+
 # Download the font installer script
 echo "📥 Downloading font installer..."
 sudo curl -o /usr/local/bin/font-install https://raw.githubusercontent.com/theandreibogdan/linux-font-installer/main/font_installer.sh

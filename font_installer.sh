@@ -1,30 +1,55 @@
 #!/usr/bin/env bash
 
-# Check if the URL is provided
+# Check if uninstall command
+if [ "$1" = "uninstall" ]; then
+    echo "🗑️  Uninstalling Linux Font Installer..."
+    
+    # Remove the script
+    if sudo rm -f /usr/local/bin/font-install; then
+        echo "✨ Linux Font Installer has been successfully uninstalled!"
+    else
+        echo "❌ Error: Failed to uninstall. Please try again with sudo privileges."
+        exit 1
+    fi
+    exit 0
+fi
+
+# Continue with existing URL check
 if [ -z "$1" ]; then
-  echo "Error: Please provide a URL to a font zip file."
-  echo "Usage: font-install <font-zip-url>"
-  exit 1
+    echo "Error: Please provide a URL to a font zip file or use 'uninstall' command."
+    echo "Usage: font-install <font-zip-url>"
+    echo "       font-install uninstall"
+    exit 1
 fi
 
 # Create a temporary directory
 TEMP_DIR=$(mktemp -d)
 echo "Created temporary directory for download..."
 
-# Download the font zip file
+# Download the font package
 echo "Downloading font package..."
-if ! wget -O "$TEMP_DIR/font.zip" "$1"; then
+if ! wget -O "$TEMP_DIR/font.archive" "$1"; then
   echo "Error: Failed to download the font package"
   rm -rf "$TEMP_DIR"
   exit 1
 fi
 
-# Unzip the font file
+# Detect file type and extract accordingly
 echo "Extracting font files..."
-if ! unzip "$TEMP_DIR/font.zip" -d "$TEMP_DIR"; then
-  echo "Error: Failed to extract the font package"
-  rm -rf "$TEMP_DIR"
-  exit 1
+if file "$TEMP_DIR/font.archive" | grep -q "XZ compressed data"; then
+  # Handle tar.xz files
+  if ! tar -xf "$TEMP_DIR/font.archive" -C "$TEMP_DIR"; then
+    echo "Error: Failed to extract the tar.xz package"
+    rm -rf "$TEMP_DIR"
+    exit 1
+  fi
+else
+  # Handle zip files
+  if ! unzip "$TEMP_DIR/font.archive" -d "$TEMP_DIR"; then
+    echo "Error: Failed to extract the package"
+    rm -rf "$TEMP_DIR"
+    exit 1
+  fi
 fi
 
 # Check if any font files were extracted

@@ -13,6 +13,8 @@ curl -fsSL https://raw.githubusercontent.com/theandreibogdan/linux-font-installe
 - curl
 - wget
 - unzip
+- tar
+- file
 
 ## 🎯 Usage
 
@@ -25,6 +27,11 @@ font-install <font-zip-url>
 ### Example:
 ```bash
 font-install https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+```
+
+To uninstall the script (this won't remove installed fonts):
+```bash
+font-install uninstall
 ```
 
 ## ✨ Features
