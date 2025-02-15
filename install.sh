@@ -46,7 +46,9 @@ if ! sudo chmod +x /usr/local/bin/font-install; then
     exit 1
 fi
 
+echo ""
 echo "✨ Installation completed! You can now use the 'font-install' command."
+echo ""
 echo "📚 Usage example: font-install https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip"
 
 echo ""
