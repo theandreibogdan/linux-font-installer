@@ -1,5 +1,32 @@
 #!/usr/bin/env bash
 
+# Check if the script is called with the -h or --help option
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+  ehco ""
+  echo "Usage: font-install <font-zip-url>"
+  echo "       font-install uninstall"
+  echo ""
+  echo "Options:"
+  echo "  -h, --help    Show this help message and exit"
+  echo "  uninstall     Uninstall the Linux Font Installer"
+  echo ""
+  echo "🔍 Looking for awesome fonts to install? Here's a quick tutorial!"
+  echo ""
+  echo "1. Open the Nerd Fonts download page: https://www.nerdfonts.com/font-downloads"
+  echo "2. Browse through the collection and find a font you like."
+  echo "3. Right-click on the 'Download' button next to the font and select 'Copy Link'."
+  echo "4. Come back to your terminal and run:"
+  echo ""
+  echo "   font-install <paste-the-copied-link-here>"
+  echo ""
+  echo "   For example:"
+  echo "   font-install https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip"
+  echo ""
+  echo "That's it! The font-installer will handle the download, extraction, and installation for you."
+  echo "Happy font hunting! 🎉"
+  exit 0
+fi
+
 # Check if uninstall command
 if [ "$1" = "uninstall" ]; then
     echo "🗑️  Uninstalling Linux Font Installer..."
@@ -12,6 +39,25 @@ if [ "$1" = "uninstall" ]; then
         exit 1
     fi
     exit 0
+fi
+
+# Check if the script is called with the --fonts option
+if [ "$1" = "--fonts" ]; then
+  echo "🔍 Looking for awesome fonts to install? Here's a quick tutorial!"
+  echo ""
+  echo "1. Open the Nerd Fonts download page: https://www.nerdfonts.com/font-downloads"
+  echo "2. Browse through the collection and find a font you like."
+  echo "3. Right-click on the 'Download' button next to the font and select 'Copy Link'."
+  echo "4. Come back to your terminal and run:"
+  echo ""
+  echo "   font-install <paste-the-copied-link-here>"
+  echo ""
+  echo "   For example:"
+  echo "   font-install https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip"
+  echo ""
+  echo "That's it! The font-installer will handle the download, extraction, and installation for you."
+  echo "Happy font hunting! 🎉"
+  exit 0
 fi
 
 # Continue with existing URL check
@@ -116,3 +162,11 @@ fi
 rm -rf "$TEMP_DIR"
 
 echo "✨ Fonts installed successfully! ✨"
+
+echo ""
+echo "🔍 Looking for more awesome fonts to install? Run 'font-install -h' or 'font-install --help' for a quick tutorial!"
+
+# Check if the script is called with the --fonts option
+if [ "$1" = "--fonts" ]; then
+  exit 0
+fi

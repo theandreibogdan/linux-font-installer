@@ -54,3 +54,25 @@ The installer requires sudo privileges to:
 ## 📝 License
 
 MIT License
+
+## 🔍 Finding and Installing Fonts
+
+Looking for awesome fonts to install? Here's a quick tutorial:
+
+1. Open the [Nerd Fonts download page](https://www.nerdfonts.com/font-downloads) in your web browser.
+2. Browse through the extensive collection and find a font that catches your eye.
+3. Right-click on the 'Download' button next to the font you like and select 'Copy Link'.
+4. Come back to your terminal and run:
+
+   ```bash
+   font-install <paste-the-copied-link-here>
+   ```
+
+   For example:
+   ```bash
+   font-install https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
+   ```
+
+That's it! The font-installer will handle the download, extraction, and installation process for you. In just a few moments, you'll have your new font ready to use.
+
+Happy font hunting! 🎉
