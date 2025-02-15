@@ -66,13 +66,19 @@ else
   fi
 fi
 
+echo "Debugging: Contents of the temporary directory after extraction:"
+ls -lR "$TEMP_DIR"
+
 # Check if any font files were extracted
 find "$TEMP_DIR" -type f \( -name "*.ttf" -o -name "*.otf" -o -name "*.woff" -o -name "*.woff2" \) > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo "Error: No supported font files (.ttf, .otf, .woff, or .woff2) found in the package"
+  echo "Debugging: Supported font files not found, exiting..."
   rm -rf "$TEMP_DIR"
   exit 1
 fi
+
+echo "Debugging: Supported font files found, continuing with installation..."
 
 # Create fonts directory if it doesn't exist
 sudo mkdir -p /usr/local/share/fonts/
