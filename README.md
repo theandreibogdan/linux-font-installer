@@ -1,20 +1,49 @@
-# linux-font-installer
-This is a quick script that allows you to install fonts properly on Linux from URLs
+# Linux Font Installer
 
-Author of the script: https://dev.to/pulkitsingh
+A simple command-line tool to easily install fonts on Linux systems. Just provide a URL to a font zip file, and the tool will handle the download, extraction, and installation automatically.
 
-# How to use it
-1. Create a new file: `font_installer.sh` with the code from the file above
+## 🚀 Quick Install
 
-2. Make sure you run `sudo chmod 777 font_installer.sh` so it is executable
+```bash
+curl -fsSL https://raw.githubusercontent.com/theandreibogdan/linux-font-installer/main/install.sh | sudo bash
+```
 
-3. Now you can run it using `./font_installer.sh https://your.url.com`
+## 📋 Requirements
 
+- curl
+- wget
+- unzip
 
-You can try it with this command: `./install-font.sh https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1`
+## 🎯 Usage
 
+After installation, you can use the `font-install` command from anywhere in your terminal:
 
-I saved this script here because I've had problems with installing fonts, and Hack seems like the best one that also has icon in NVIM
+```bash
+font-install <font-zip-url>
+```
 
+### Example:
+```bash
+font-install https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+```
 
-Hope you found it useful, and make sure you check the author of the script: https://dev.to/pulkitsingh
+## ✨ Features
+
+- Easy one-line installation
+- Global command accessible from anywhere
+- Automatic font cache update
+- Error handling and validation
+- Progress feedback
+- Cleanup after installation
+
+## 🔒 Security
+
+The installer requires sudo privileges to:
+1. Install the script in `/usr/local/bin`
+2. Create the fonts directory if it doesn't exist
+3. Move font files to the system fonts directory
+4. Update the font cache
+
+## 📝 License
+
+MIT License
