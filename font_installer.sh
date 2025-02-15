@@ -67,7 +67,8 @@ else
 fi
 
 # Check if any font files were extracted
-if ! ls "$TEMP_DIR"/*.{ttf,otf,woff,woff2} "$TEMP_DIR"/*/*.{ttf,otf,woff,woff2} >/dev/null 2>&1; then
+find "$TEMP_DIR" -type f \( -name "*.ttf" -o -name "*.otf" -o -name "*.woff" -o -name "*.woff2" \) > /dev/null 2>&1
+if [ $? -ne 0 ]; then
   echo "Error: No supported font files (.ttf, .otf, .woff, or .woff2) found in the package"
   rm -rf "$TEMP_DIR"
   exit 1
@@ -79,7 +80,7 @@ sudo mkdir -p /usr/local/share/fonts/
 # Move the font files to the system fonts directory
 echo "Installing fonts..."
 if [ "$2" = "--force" ]; then
-  if ! sudo mv -f "$TEMP_DIR"/*.{ttf,otf,woff,woff2} "$TEMP_DIR"/*/*.{ttf,otf,woff,woff2} /usr/local/share/fonts/ 2>/dev/null; then
+  if ! sudo find "$TEMP_DIR" -type f \( -name "*.ttf" -o -name "*.otf" -o -name "*.woff" -o -name "*.woff2" \) -exec mv -f {} /usr/local/share/fonts/ \; ; then
     echo "Error: Failed to install fonts (even with --force)"
     rm -rf "$TEMP_DIR"
     exit 1
@@ -87,11 +88,11 @@ if [ "$2" = "--force" ]; then
 elif [ "$2" = "--dry-run" ]; then
   echo "Dry run: Simulating font installation..."
   echo "The following fonts would be installed:"
-  ls "$TEMP_DIR"/*.{ttf,otf,woff,woff2} "$TEMP_DIR"/*/*.{ttf,otf,woff,woff2}
+  find "$TEMP_DIR" -type f \( -name "*.ttf" -o -name "*.otf" -o -name "*.woff" -o -name "*.woff2" \)
   rm -rf "$TEMP_DIR"
   exit 0
 else
-  if ! sudo mv -i "$TEMP_DIR"/*.{ttf,otf,woff,woff2} "$TEMP_DIR"/*/*.{ttf,otf,woff,woff2} /usr/local/share/fonts/ 2>/dev/null; then
+  if ! sudo find "$TEMP_DIR" -type f \( -name "*.ttf" -o -name "*.otf" -o -name "*.woff" -o -name "*.woff2" \) -exec mv -i {} /usr/local/share/fonts/ \; ; then
     echo "Error: Failed to install fonts (you may use --force to overwrite existing files)"
     rm -rf "$TEMP_DIR"
     exit 1
