@@ -2,7 +2,7 @@
 
 # Check if the script is called with the -h or --help option
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-  ehco ""
+  echo ""
   echo "Usage: font-install <font-zip-url>"
   echo "       font-install uninstall"
   echo ""
